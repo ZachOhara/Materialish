@@ -32,6 +32,16 @@ public class MaterialLabel extends StackPane {
 	private boolean italic;
 	private boolean condensed;
 	
+	public MaterialLabel(LabelStyle style) {
+		this("", style);
+	}
+	
+	public MaterialLabel(String text, LabelStyle style) {
+		this(text);
+		this.setFontStyle(style.getWeight());
+		this.setFontSize(style.getSize());
+	}
+	
 	public MaterialLabel() {
 		this("");
 	}
