@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.github.zachohara.materialish.font;
+package io.github.zachohara.materialish.text;
 
 import io.github.zachohara.materialish.resource.font.roboto.RobotoFont;
 import javafx.scene.control.Label;
