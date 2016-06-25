@@ -19,16 +19,21 @@ package io.github.zachohara.materialish.transition;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.github.zachohara.materialish.transition.interpolator.BezierInterpolator;
+import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public abstract class MaterialTransition<T extends MaterialTransition<T>> extends Transition implements EventHandler<ActionEvent> {
 	
+	private static final Interpolator STANDARD_INTERPOLATOR = BezierInterpolator.STANDARD;
+	
 	private final List<TransitionCompletionListener<T>> completionListeners;
 	
 	public MaterialTransition() {
 		super();
+		this.setInterpolator(STANDARD_INTERPOLATOR);
 		
 		this.completionListeners = new LinkedList<TransitionCompletionListener<T>>();
 		
@@ -46,5 +51,8 @@ public abstract class MaterialTransition<T extends MaterialTransition<T>> extend
 			listener.handleTransitionCompletion((T) this);
 		}
 	}
+	
+	@Override
+	public abstract void interpolate(double fraction);
 	
 }

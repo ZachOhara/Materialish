@@ -16,24 +16,27 @@
 
 package io.github.zachohara.materialish.transition;
 
-import javafx.beans.property.DoubleProperty;
+import java.util.LinkedList;
+import java.util.List;
 
-public class PropertyTransition<T extends PropertyTransition<T>> extends MaterialTransition<T> {
+public class MultiTransition<T extends MultiTransition<T>> extends MaterialTransition<T> {
 	
-	private final DoubleProperty property;
-	private final double startValue;
-	private final double increment;
+	private final List<MaterialTransition<?>> transitionList;
 	
-	public PropertyTransition(DoubleProperty property, double increment) {
+	public MultiTransition() {
 		super();
-		this.property = property;
-		this.startValue = property.get();
-		this.increment = increment;
+		this.transitionList = new LinkedList<MaterialTransition<?>>();
 	}
 	
+	public final void addTransition(MaterialTransition<?> transition) {
+		this.transitionList.add(transition);
+	}
+
 	@Override
 	public final void interpolate(double fraction) {
-		this.property.set(this.startValue + (fraction * this.increment));
+		for (MaterialTransition<?> t : this.transitionList) {
+			t.interpolate(fraction);
+		}
 	}
 
 }

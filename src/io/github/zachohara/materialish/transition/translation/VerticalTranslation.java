@@ -14,26 +14,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.github.zachohara.materialish.transition;
+package io.github.zachohara.materialish.transition.translation;
 
-import javafx.beans.property.DoubleProperty;
+import io.github.zachohara.materialish.transition.PropertyTransition;
+import javafx.scene.Node;
 
-public class PropertyTransition<T extends PropertyTransition<T>> extends MaterialTransition<T> {
-	
-	private final DoubleProperty property;
-	private final double startValue;
-	private final double increment;
-	
-	public PropertyTransition(DoubleProperty property, double increment) {
-		super();
-		this.property = property;
-		this.startValue = property.get();
-		this.increment = increment;
-	}
-	
-	@Override
-	public final void interpolate(double fraction) {
-		this.property.set(this.startValue + (fraction * this.increment));
+public class VerticalTranslation extends PropertyTransition<VerticalTranslation> {
+
+	public VerticalTranslation(Node translatingNode, double distance) {
+		super(translatingNode.layoutYProperty(), distance);
 	}
 
 }
