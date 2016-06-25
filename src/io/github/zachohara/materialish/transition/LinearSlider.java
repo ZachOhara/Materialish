@@ -16,20 +16,21 @@
 
 package io.github.zachohara.materialish.transition;
 
-import javafx.beans.property.DoubleProperty;
-
-public class PropertyTransition<T extends PropertyTransition<T>> extends LinearSlider<T> {
+public abstract class LinearSlider<T extends LinearSlider<T>> extends MaterialTransition<T> {
 	
-	private final DoubleProperty property;
+	private final double startValue;
+	private final double increment;
 	
-	public PropertyTransition(DoubleProperty property, double increment) {
-		super(property.get(), increment);
-		this.property = property;
+	public LinearSlider(double startValue, double increment) {
+		this.startValue = startValue;
+		this.increment = increment;
 	}
-
-	@Override
-	protected final void updateValue(double currentValue) {
-		this.property.set(currentValue);
+	
+	public final void interpolate(double fraction) {
+		double currentValue = startValue + (fraction * increment);
+		this.updateValue(currentValue);
 	}
-
+	
+	protected abstract void updateValue(double currentValue);
+	
 }

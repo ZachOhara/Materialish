@@ -14,22 +14,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.github.zachohara.materialish.transition;
+package io.github.zachohara.materialish.transition.resize;
 
-import javafx.beans.property.DoubleProperty;
+import io.github.zachohara.materialish.transition.MultiTransition;
+import io.github.zachohara.materialish.transition.translation.VerticalTranslation;
+import javafx.scene.layout.Region;
 
-public class PropertyTransition<T extends PropertyTransition<T>> extends LinearSlider<T> {
+public class CenteredHeightResize extends MultiTransition<CenteredHeightResize> {
 	
-	private final DoubleProperty property;
+	public CenteredHeightResize(Region resizingRegion, double newHeight) {
+		super();
+		this.addTransition(new HeightResize(resizingRegion, newHeight));
+		this.addTransition(new VerticalTranslation(resizingRegion, (newHeight - resizingRegion.getHeight()) / 2));
+	}
 	
-	public PropertyTransition(DoubleProperty property, double increment) {
-		super(property.get(), increment);
-		this.property = property;
-	}
-
-	@Override
-	protected final void updateValue(double currentValue) {
-		this.property.set(currentValue);
-	}
-
 }

@@ -14,22 +14,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.github.zachohara.materialish.transition;
+package io.github.zachohara.materialish.transition.scroll;
 
-import javafx.beans.property.DoubleProperty;
+import io.github.zachohara.materialish.transition.PropertyTransition;
+import javafx.scene.control.ScrollPane;
 
-public class PropertyTransition<T extends PropertyTransition<T>> extends LinearSlider<T> {
+public class VerticalScroll extends PropertyTransition<VerticalScroll> {
 	
-	private final DoubleProperty property;
+	public VerticalScroll(ScrollPane scrollingPane, double endValue) {
+		super(scrollingPane.vvalueProperty(), endValue - scrollingPane.getVvalue());
+	}
 	
-	public PropertyTransition(DoubleProperty property, double increment) {
-		super(property.get(), increment);
-		this.property = property;
-	}
-
-	@Override
-	protected final void updateValue(double currentValue) {
-		this.property.set(currentValue);
-	}
-
 }

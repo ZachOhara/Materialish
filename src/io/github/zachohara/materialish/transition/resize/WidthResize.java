@@ -14,22 +14,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package io.github.zachohara.materialish.transition;
+package io.github.zachohara.materialish.transition.resize;
 
-import javafx.beans.property.DoubleProperty;
+import io.github.zachohara.materialish.transition.LinearSlider;
+import javafx.scene.layout.Region;
 
-public class PropertyTransition<T extends PropertyTransition<T>> extends LinearSlider<T> {
+public class WidthResize extends LinearSlider<WidthResize> {
 	
-	private final DoubleProperty property;
+	private final Region resizingRegion;
 	
-	public PropertyTransition(DoubleProperty property, double increment) {
-		super(property.get(), increment);
-		this.property = property;
+	public WidthResize(Region resizingRegion, double newWidth) {
+		super(resizingRegion.getWidth(), newWidth - resizingRegion.getWidth());
+		this.resizingRegion = resizingRegion;
 	}
 
 	@Override
-	protected final void updateValue(double currentValue) {
-		this.property.set(currentValue);
+	protected void updateValue(double currentValue) {
+		this.resizingRegion.setPrefWidth(currentValue);
 	}
-
+	
 }
