@@ -19,7 +19,7 @@ package io.github.zachohara.materialish.transition.translation;
 import io.github.zachohara.materialish.transition.PropertyTransition;
 import javafx.scene.Node;
 
-public class VerticalTranslation extends PropertyTransition<VerticalTranslation> {
+public class VerticalTranslation extends PropertyTransition {
 
 	public VerticalTranslation(Node translatingNode, double distance) {
 		super(translatingNode.layoutYProperty(), distance);

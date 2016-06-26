@@ -18,7 +18,7 @@ package io.github.zachohara.materialish.transition;
 
 import javafx.beans.property.DoubleProperty;
 
-public class PropertyTransition<T extends PropertyTransition<T>> extends LinearSlider<T> {
+public class PropertyTransition extends LinearSlider {
 	
 	private final DoubleProperty property;
 	

@@ -19,7 +19,7 @@ package io.github.zachohara.materialish.transition.resize;
 import io.github.zachohara.materialish.transition.LinearSlider;
 import javafx.scene.layout.Region;
 
-public class WidthResize extends LinearSlider<WidthResize> {
+public class WidthResize extends LinearSlider {
 	
 	private final Region resizingRegion;
 	
@@ -29,7 +29,7 @@ public class WidthResize extends LinearSlider<WidthResize> {
 	}
 
 	@Override
-	protected void updateValue(double currentValue) {
+	protected final void updateValue(double currentValue) {
 		this.resizingRegion.setPrefWidth(currentValue);
 	}
 	

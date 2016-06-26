@@ -19,7 +19,7 @@ package io.github.zachohara.materialish.transition.scroll;
 import io.github.zachohara.materialish.transition.PropertyTransition;
 import javafx.scene.control.ScrollPane;
 
-public class HorizontalScroll extends PropertyTransition<HorizontalScroll> {
+public class HorizontalScroll extends PropertyTransition {
 	
 	public HorizontalScroll(ScrollPane scrollingPane, double endValue) {
 		super(scrollingPane.hvalueProperty(), endValue - scrollingPane.getHvalue());

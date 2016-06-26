@@ -16,28 +16,8 @@
 
 package io.github.zachohara.materialish.transition;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class MultiTransition extends MaterialTransition {
+public interface TransitionProgressListener {
 	
-	private final List<MaterialTransition> transitionList;
-	
-	public MultiTransition() {
-		super();
-		this.transitionList = new LinkedList<MaterialTransition>();
-	}
-	
-	public final void addTransition(MaterialTransition transition) {
-		this.transitionList.add(transition);
-	}
-
-	@Override
-	public final void interpolate(double fraction) {
-		super.interpolate(fraction);
-		for (MaterialTransition t : this.transitionList) {
-			t.interpolate(fraction);
-		}
-	}
+	public void handleTransitionProgress(MaterialTransition transition, double progress);
 
 }

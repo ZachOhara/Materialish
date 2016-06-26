@@ -16,28 +16,21 @@
 
 package io.github.zachohara.materialish.transition;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class MultiTransition extends MaterialTransition {
+public class InterpolatedQuantity extends LinearSlider {
 	
-	private final List<MaterialTransition> transitionList;
+	private double currentValue;
 	
-	public MultiTransition() {
-		super();
-		this.transitionList = new LinkedList<MaterialTransition>();
-	}
-	
-	public final void addTransition(MaterialTransition transition) {
-		this.transitionList.add(transition);
+	public InterpolatedQuantity(double startValue, double increment) {
+		super(startValue, increment);
 	}
 
 	@Override
-	public final void interpolate(double fraction) {
-		super.interpolate(fraction);
-		for (MaterialTransition t : this.transitionList) {
-			t.interpolate(fraction);
-		}
+	protected void updateValue(double currentValue) {
+		this.currentValue = currentValue;
 	}
-
+	
+	public final double getCurrentValue() {
+		return this.currentValue;
+	}
+	
 }

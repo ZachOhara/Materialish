@@ -16,7 +16,7 @@
 
 package io.github.zachohara.materialish.transition;
 
-public abstract class LinearSlider<T extends LinearSlider<T>> extends MaterialTransition<T> {
+public abstract class LinearSlider extends MaterialTransition {
 	
 	private final double startValue;
 	private final double increment;
@@ -27,10 +27,23 @@ public abstract class LinearSlider<T extends LinearSlider<T>> extends MaterialTr
 	}
 	
 	public final void interpolate(double fraction) {
+		super.interpolate(fraction);
 		double currentValue = startValue + (fraction * increment);
 		this.updateValue(currentValue);
 	}
 	
 	protected abstract void updateValue(double currentValue);
+	
+	public final double getStartValue() {
+		return this.startValue;
+	}
+	
+	public final double getIncrement() {
+		return this.increment;
+	}
+	
+	public final double getEndValue() {
+		return this.startValue + this.increment;
+	}
 	
 }

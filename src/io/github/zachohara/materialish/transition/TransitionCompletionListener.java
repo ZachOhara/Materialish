@@ -16,8 +16,8 @@
 
 package io.github.zachohara.materialish.transition;
 
-public interface TransitionCompletionListener<T extends MaterialTransition<T>> {
+public interface TransitionCompletionListener {
 	
-	public void handleTransitionCompletion(T transition);
+	public void handleTransitionCompletion(MaterialTransition transition);
 
 }

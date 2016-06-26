@@ -19,7 +19,7 @@ package io.github.zachohara.materialish.transition.translation;
 import io.github.zachohara.materialish.transition.MultiTransition;
 import javafx.scene.Node;
 
-public class TranslationTransition extends MultiTransition<TranslationTransition> {
+public class TranslationTransition extends MultiTransition {
 	
 	public TranslationTransition(Node translatingNode, double distanceX, double distanceY) {
 		super();

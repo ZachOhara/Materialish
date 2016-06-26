@@ -19,7 +19,7 @@ package io.github.zachohara.materialish.transition.scroll;
 import io.github.zachohara.materialish.transition.PropertyTransition;
 import javafx.scene.control.ScrollPane;
 
-public class VerticalScroll extends PropertyTransition<VerticalScroll> {
+public class VerticalScroll extends PropertyTransition {
 	
 	public VerticalScroll(ScrollPane scrollingPane, double endValue) {
 		super(scrollingPane.vvalueProperty(), endValue - scrollingPane.getVvalue());

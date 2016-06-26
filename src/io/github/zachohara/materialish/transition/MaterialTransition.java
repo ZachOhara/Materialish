@@ -24,35 +24,49 @@ import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.util.Duration;
 
-public abstract class MaterialTransition<T extends MaterialTransition<T>> extends Transition implements EventHandler<ActionEvent> {
+public abstract class MaterialTransition extends Transition implements EventHandler<ActionEvent> {
 	
 	private static final Interpolator STANDARD_INTERPOLATOR = BezierInterpolator.STANDARD;
 	
-	private final List<TransitionCompletionListener<T>> completionListeners;
+	private final List<TransitionCompletionListener> completionListeners;
+	private final List<TransitionProgressListener> progressListeners;
 	
 	public MaterialTransition() {
 		super();
 		this.setInterpolator(STANDARD_INTERPOLATOR);
 		
-		this.completionListeners = new LinkedList<TransitionCompletionListener<T>>();
+		this.completionListeners = new LinkedList<TransitionCompletionListener>();
+		this.progressListeners = new LinkedList<TransitionProgressListener>();
 		
 		this.setOnFinished(this);
 	}
 	
-	public final void addCompletionListener(TransitionCompletionListener<T> completionListener) {
+	public final void setMilliDuration(double millis) {
+		this.setCycleDuration(Duration.millis(millis));
+	}
+	
+	public final void addCompletionListener(TransitionCompletionListener completionListener) {
 		this.completionListeners.add(completionListener);
 	}
 	
-	@SuppressWarnings("unchecked")
+	public final void addProgressListener(TransitionProgressListener progressListener) {
+		this.progressListeners.add(progressListener);
+	}
+	
 	@Override
 	public final void handle(ActionEvent event) {
-		for (TransitionCompletionListener<T> listener : this.completionListeners) {
-			listener.handleTransitionCompletion((T) this);
+		for (TransitionCompletionListener listener : this.completionListeners) {
+			listener.handleTransitionCompletion(this);
 		}
 	}
 	
 	@Override
-	public abstract void interpolate(double fraction);
+	public void interpolate(double fraction) {
+		for (TransitionProgressListener listener : this.progressListeners) {
+			listener.handleTransitionProgress(this, fraction);
+		}
+	}
 	
 }

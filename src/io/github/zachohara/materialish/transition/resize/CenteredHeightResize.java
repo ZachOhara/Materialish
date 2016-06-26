@@ -20,12 +20,12 @@ import io.github.zachohara.materialish.transition.MultiTransition;
 import io.github.zachohara.materialish.transition.translation.VerticalTranslation;
 import javafx.scene.layout.Region;
 
-public class CenteredHeightResize extends MultiTransition<CenteredHeightResize> {
+public class CenteredHeightResize extends MultiTransition {
 	
 	public CenteredHeightResize(Region resizingRegion, double newHeight) {
 		super();
 		this.addTransition(new HeightResize(resizingRegion, newHeight));
-		this.addTransition(new VerticalTranslation(resizingRegion, (newHeight - resizingRegion.getHeight()) / 2));
+		this.addTransition(new VerticalTranslation(resizingRegion, -(newHeight - resizingRegion.getHeight()) / 2));
 	}
 	
 }

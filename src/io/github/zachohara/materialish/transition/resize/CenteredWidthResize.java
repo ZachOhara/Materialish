@@ -20,12 +20,12 @@ import io.github.zachohara.materialish.transition.MultiTransition;
 import io.github.zachohara.materialish.transition.translation.HorizontalTranslation;
 import javafx.scene.layout.Region;
 
-public class CenteredWidthResize extends MultiTransition<CenteredWidthResize> {
+public class CenteredWidthResize extends MultiTransition {
 	
 	public CenteredWidthResize(Region resizingRegion, double newWidth) {
 		super();
 		this.addTransition(new WidthResize(resizingRegion, newWidth));
-		this.addTransition(new HorizontalTranslation(resizingRegion, (newWidth - resizingRegion.getWidth()) / 2));
+		this.addTransition(new HorizontalTranslation(resizingRegion, -(newWidth - resizingRegion.getWidth()) / 2));
 	}
 	
 }
