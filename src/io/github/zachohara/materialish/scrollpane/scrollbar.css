@@ -1,0 +1,27 @@
+
+.scroll-bar {
+	-fx-background-color: #f1f1f1;
+	-fx-pref-width: 17px;
+}
+
+.thumb {
+	-fx-background-color: #c1c1c1;
+	-fx-background-radius: 0px;
+}
+
+.thumb:hover {
+	-fx-background-color: #a8a8a8;
+}
+
+.increment-arrow, .decrement-arrow {
+	-fx-background-color: #505050;
+}
+
+.increment-button, .decrement-button {
+	-fx-background-inset: 0px;
+	-fx-pref-width: 2px;
+}
+
+.increment-button:hover, .decrement-button:hover {
+	-fx-background-color: #d2d2d2;
+}
